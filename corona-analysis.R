@@ -60,3 +60,30 @@ misinfo_d %>%
     data=.
   )
   
+misinfo_d %>%
+  ggplot(aes(x=age, y=beliefs))+
+  geom_jitter()
+
+misinfo_d %>%
+  cor.test(
+    ~ age + beliefs,
+    data=.,
+    method = 'pearson'
+  )
+
+misinfo_d %>%
+  ggplot(
+    aes(x=know_facebook, y=beliefs)
+  )+
+  geom_boxplot()
+
+misinfo_d %>%
+  mutate(
+    know_facebook=as.numeric(know_facebook)
+  ) %>%
+  cor.test(
+    ~know_facebook+beliefs,
+    data=.,
+    method = 'spearman',
+    exact=FALSE
+  )
