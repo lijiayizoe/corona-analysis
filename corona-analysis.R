@@ -87,3 +87,17 @@ misinfo_d %>%
     method = 'spearman',
     exact=FALSE
   )
+
+model_d <- misinfo_d %>%
+  mutate(
+    Female=as.numeric( gender=='Female'),
+    High_Facebook=as.numeric(know_facebook %in% c('A fair amount','A great deal'))
+  ) 
+
+full_model <- model_d %>%
+  lm(
+    beliefs ~ age + High_Facebook + Female,
+    data=.
+  ) 
+
+  
